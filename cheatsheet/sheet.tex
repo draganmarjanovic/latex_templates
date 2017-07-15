@@ -1,0 +1,96 @@
+
+\documentclass[10pt,a4paper]{article}
+
+% Packages
+\usepackage{pdflscape}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=0.3in]{geometry}
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[explicit]{titlesec}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\setlist{nosep}
+
+
+\newcommand{\alt}[0]{\enskip\big|\enskip}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\jeff}[2]{#1\textsubscript{#2}}
+
+\definecolor{banana}{rgb}{0.98, 0.91, 0.71}
+\definecolor{terracotta}{rgb}{0.89, 0.45, 0.36}
+
+% Metadata
+\title{Crib Sheet}
+\date{\today}
+\author{Dragan Marjanovic}
+
+% Styling
+% Make section titles smaller and give them the dank looking line
+\newcommand{\vrulefill}[1]{\leavevmode\leaders\hrule height#1\hfill\kern0pt}
+\titleformat{\section}{\bfseries}{\thesection}{0.75em}{#1\quad\vrulefill{0.12em}}
+
+% Make subsection titles smaller
+\titleformat{\subsection}{\bfseries}{\thesubsection}{0.75em}{#1}
+
+% Ensure the text under each section is not spaced wastefully
+\titlespacing*{\document}{0em}{0em}{0em}
+\titlespacing*{\section}{0em}{0em}{0em}
+\titlespacing*{\subsection}{0em}{0em}{0em}
+\titlespacing*{\subsubsection}{0em}{0em}{0em}
+
+
+\begin{document}
+\begin{landscape}
+\begin{multicols}{3}
+
+\maketitle
+
+
+\begin{lstlisting}[language=Java, frame=single, morekeywords={StatementNode, List, ExpNode, String}, escapechar=!]
+StatementNode parseCallStmnt() {
+  match(Token.KW_CALL);
+  if (token.isMatch(Token.ID)) {
+    String name = token.getName();
+    match(Token.ID);
+    match(Token.LPAREN);
+    List<ExpNode> params = parseParams();
+    match(Token.RPAREN);
+    return new CallStmtNode(name, params);
+  } else {
+    error("Could not find ID.");
+    return new ErrorStmtNode();
+  }
+}
+
+List<ExpNode> parseParams() {
+\end{lstlisting}
+
+
+
+\section*{\textcolor{red}{Important}} % (fold)
+\label{sec:general_tips}
+\begin{itemize}
+	\item Important item 1.
+  \item Important item 2.
+  \item ...
+\end{itemize}
+
+General Notes:
+\begin{itemize}
+  \item Note 1
+  \item Note 2
+\end{itemize}
+
+\end{multicols}
+\end{landscape}
+\end{document}
